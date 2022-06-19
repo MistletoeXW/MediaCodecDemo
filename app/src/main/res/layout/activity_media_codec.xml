@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MediaCodec.MediaCodecActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MediaCodec解码音视频"
+        android:onClick="decoder"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/pcmaac"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="录音生成的 PCM 文件编码为 AAC"
+        android:onClick="encodeAcc"
+        android:textAllCaps="false" />
+
+</LinearLayout>
