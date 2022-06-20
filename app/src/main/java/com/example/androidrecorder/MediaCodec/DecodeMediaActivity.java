@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.androidrecorder.Constants;
+import com.example.androidrecorder.MediaCodec.decode.async.AsyncAudioDecode;
+import com.example.androidrecorder.MediaCodec.decode.async.AsyncVideoDecode;
 import com.example.androidrecorder.MediaCodec.decode.sync.SyncAudioDecode;
 import com.example.androidrecorder.MediaCodec.decode.sync.SyncVideoDecode;
 import com.example.androidrecorder.R;
@@ -34,6 +36,9 @@ public class DecodeMediaActivity extends AppCompatActivity {
     private Handler handler;
     private BlockingQueue<Integer> mBlockingQueue = new LinkedBlockingDeque<>();
     private BlockingQueue<Integer> mAudioBlockingQueue = new LinkedBlockingDeque<>();
+
+    private AsyncVideoDecode mAsyncVideo;
+    private AsyncAudioDecode mAsyncAudio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +98,15 @@ public class DecodeMediaActivity extends AppCompatActivity {
     }
 
     public void async(View view) {
+        stopMedia();
+        // mExecutorService.shutdownNow();
 
+        mAsyncVideo = new AsyncVideoDecode(mTextureView.getSurfaceTexture());
+
+        mAsyncVideo.start();
+
+        mAsyncAudio = new AsyncAudioDecode();
+        mAsyncAudio.start();
     }
 
     private void stopMedia(){
